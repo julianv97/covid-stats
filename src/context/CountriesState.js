@@ -36,11 +36,9 @@ const CountriesState = (props) => {
       .catch((error) => console.log(error));
   }, []);
 
-
   useEffect(() => {
     getData(urlGlobal);
   }, [getData, urlGlobal]);
-  
 
   const handleDispatch = (type, payload) => {
     dispatch({ type: type, payload: payload });

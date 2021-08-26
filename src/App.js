@@ -2,7 +2,6 @@ import React from "react";
 
 import Container from "./components/Container";
 
-
 import CountriesState from "./context/CountriesState";
 
 function App() {
@@ -10,7 +9,6 @@ function App() {
     <div>
       <CountriesState>
         <Container />
-        
       </CountriesState>
     </div>
   );
