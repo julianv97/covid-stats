@@ -1,23 +1,16 @@
 import React, { useReducer, useEffect, useCallback } from "react";
 import axios from "axios";
+import formatDate from "./formatDate";
 
 import CountriesContext from "./CountriesContext";
 import countriesReducer from "./CountriesReducer";
 
-const formatDate = (date) => {
-  const year = date.getFullYear();
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-
-  return `${year}-${month}-${day}`;
-};
-
 const CountriesState = (props) => {
   const initialState = {
     country: "",
-    date: "2021-8-25",
-    todayStats: "",
+    date: "",
     today: formatDate(new Date()),
+    todayStats: "",
     isLoading: true,
   };
 
@@ -44,17 +37,18 @@ const CountriesState = (props) => {
     dispatch({ type: type, payload: payload });
   };
 
-  /*  today_confirmed: 
-today_deaths: 
-today_new_confirmed: 
-today_new_deaths:  */
-
   if (!state.isLoading) {
-    console.log(state.todayStats.total);
+    console.log(state.todayStats);
   }
 
   return (
-    <CountriesContext.Provider value={{ state, handleDispatch }}>
+    <CountriesContext.Provider
+      value={{
+        isLoading: state.isLoading,
+        todayStatsGlobal: state.todayStats.total,
+        handleDispatch,
+      }}
+    >
       {props.children}
     </CountriesContext.Provider>
   );

@@ -6,15 +6,15 @@ import Form from "./Form";
 import Country from "./Country";
 
 const Container = () => {
-  const { state } = useContext(CountriesContext);
+  const { isLoading } = useContext(CountriesContext);
   return (
     <div>
-      {!state.isLoading ? (
-        <>
+      {!isLoading ? (
+        <React.Fragment>
           <GlobalStats />
           <Form />
           <Country />
-        </>
+        </React.Fragment>
       ) : (
         <h1>Loading...</h1>
       )}
