@@ -8,7 +8,7 @@ import countriesReducer from "./CountriesReducer";
 const CountriesState = (props) => {
   const initialState = {
     country: "",
-    date: "",
+    date: "2021-08-27",
     today: formatDate(new Date()),
     todayStats: "",
     isLoading: true,
@@ -16,22 +16,25 @@ const CountriesState = (props) => {
 
   const [state, dispatch] = useReducer(countriesReducer, initialState);
 
-  /* let url = `https://api.covid19tracking.narrativa.com/api/${state.date}/country/${state.country}`; */
+  let url = `https://api.covid19tracking.narrativa.com/api/${state.date}/country/${state.country}`;
 
   let urlGlobal = `https://api.covid19tracking.narrativa.com/api/${state.today}`;
 
-  const getData = useCallback((url) => {
+  const getData = useCallback((url, type) => {
     axios
       .get(url)
       .then((res) => {
-        dispatch({ type: "SET_GLOBAL_STATS", payload: res.data });
+        dispatch({ type: type, payload: res.data });
       })
       .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
-    getData(urlGlobal);
-  }, [getData, urlGlobal]);
+    getData(urlGlobal, "SET_GLOBAL_STATS");
+    if (state.country) {
+      getData(url);
+    }
+  }, [getData, urlGlobal, url, state.country]);
 
   const handleDispatch = (type, payload) => {
     dispatch({ type: type, payload: payload });
