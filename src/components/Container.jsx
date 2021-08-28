@@ -4,6 +4,7 @@ import CountriesContext from "../context/CountriesContext";
 import GlobalStats from "./GlobalStats";
 import FormCountry from "./Form";
 import Country from "./Country";
+import Loader from "./Loader";
 
 const Container = () => {
   const { isLoading } = useContext(CountriesContext);
@@ -16,7 +17,7 @@ const Container = () => {
           <Country />
         </React.Fragment>
       ) : (
-        <h1>Loading...</h1>
+        <Loader />
       )}
     </div>
   );
