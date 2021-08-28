@@ -7,7 +7,7 @@ const Country = () => {
   return (
     <section className="text-base  w-full pt-4 ">
       {!countryStats ? (
-        <h1>There is no country with that name</h1>
+        <h1 className="text-center">There is no country with that name!</h1>
       ) : countryStats.length !== 1 ? (
         <div>
           <article className="border-b border-gray-700 md:text-center  text-lg font-semibold">
