@@ -10,7 +10,6 @@ const CountriesState = (props) => {
     country: "",
     date: "",
     countryStats: "1",
-    isLoadingCountry: false,
     today: formatDate(new Date()),
     todayStats: "",
     isLoading: true,
@@ -43,10 +42,6 @@ const CountriesState = (props) => {
   const handleDispatch = (type, payload) => {
     dispatch({ type: type, payload: payload });
   };
-
-  if (!state.isLoadingCountry) {
-    console.log(state.countryStats);
-  }
 
   return (
     <CountriesContext.Provider

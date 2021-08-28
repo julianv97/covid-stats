@@ -6,7 +6,7 @@ import CountriesState from "./context/CountriesState";
 
 function App() {
   return (
-    <div>
+    <div className="flex  justify-center w-full h-full min-h-screen bg-regal-green">
       <CountriesState>
         <Container />
       </CountriesState>

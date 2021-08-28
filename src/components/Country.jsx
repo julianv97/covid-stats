@@ -1,23 +1,41 @@
 import React, { useContext } from "react";
 import CountriesContext from "../context/CountriesContext";
+import { BsDot } from "react-icons/bs";
 
 const Country = () => {
-  const { country, countryStats, isLoadingCountry } =
-    useContext(CountriesContext);
+  const { countryStats } = useContext(CountriesContext);
   return (
-    <section>
+    <section className="text-base  w-full pt-4 ">
       {!countryStats ? (
         <h1>There is no country with that name</h1>
-      ) : isLoadingCountry ? (
-        <h1>Loading...</h1>
-      ) : country ? (
+      ) : countryStats.length !== 1 ? (
         <div>
-          <article>{countryStats.name}</article>
-          <article>
-            <p>Total Confirmed Cases: {countryStats.today_confirmed}</p>
-            <p>Total Deaths: {countryStats.today_deaths}</p>
-            <p>Today New Confirmed Cases: {countryStats.today_new_confirmed}</p>
-            <p>Today New Deaths: {countryStats.today_new_deaths}</p>
+          <article className="border-b border-gray-700 md:text-center  text-lg font-semibold">
+            <span className="pl-2">{countryStats.name}</span>
+          </article>
+          <article className="pl-2 pt-6 flex flex-col justify-center">
+            <p className="flex items-center">
+              <BsDot />
+              Total Confirmed Cases:{" "}
+              <span className="font-bold">{countryStats.today_confirmed}</span>
+            </p>
+            <p className="flex items-center">
+              <BsDot />
+              Total Deaths:{" "}
+              <span className="font-bold">{countryStats.today_deaths}</span>
+            </p>
+            <p className="flex items-center">
+              <BsDot />
+              Today New Confirmed Cases:{" "}
+              <span className="font-bold">
+                {countryStats.today_new_confirmed}
+              </span>
+            </p>
+            <p className="flex items-center">
+              <BsDot />
+              Today New Deaths:{" "}
+              <span className="font-bold">{countryStats.today_new_deaths}</span>
+            </p>
           </article>
         </div>
       ) : (

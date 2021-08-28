@@ -15,14 +15,30 @@ const FormCountry = () => {
         handleDispatch("SET_COUNTRY", values);
       }}
     >
-      <Form>
-        <label htmlFor="country">Country</label>
-        <Field id="country" name="country" placeholder="Country" />
+      <Form className="pt-4 text-gray-900">
+        <label htmlFor="country " className="font-bold pr-2">
+          Country
+        </label>
+        <Field
+          id="country"
+          name="country"
+          placeholder="Country"
+          className="bg-gray-300 rounded-xl h-6 pl-2"
+        />
 
-        <label htmlFor="date">Date</label>
-        <Field id="date" name="date" type="date" />
+        <label htmlFor="date " className="font-bold pl-1 pr-2">
+          Date
+        </label>
+        <Field
+          id="date"
+          name="date"
+          type="date"
+          className="bg-gray-300 rounded-xl h-6 pl-2"
+        />
 
-        <button type="submit">Search</button>
+        <button type="submit " className="font-bold pl-1 hover:text-brown">
+          Search
+        </button>
       </Form>
     </Formik>
   );

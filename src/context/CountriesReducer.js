@@ -10,14 +10,12 @@ const countriesReducer = (state, action) => {
         ...state,
         country: formatCountry(action.payload.country),
         date: action.payload.date,
-        isLoadingCountry: true,
       };
 
     case "SET_COUNTRY_STATS":
       return {
         ...state,
         countryStats: action.payload.dates[state.date].countries[state.country],
-        isLoadingCountry: false,
         error: false,
       };
 
