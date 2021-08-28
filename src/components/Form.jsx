@@ -15,7 +15,7 @@ const FormCountry = () => {
         handleDispatch("SET_COUNTRY", values);
       }}
     >
-      <Form className="pt-4 text-gray-900">
+      <Form className="pt-4 text-gray-900 flex flex-col md:flex-row items-center">
         <label htmlFor="country " className="font-bold pr-2">
           Country
         </label>
@@ -36,7 +36,10 @@ const FormCountry = () => {
           className="bg-gray-300 rounded-xl h-6 pl-2"
         />
 
-        <button type="submit " className="font-bold pl-1 hover:text-brown">
+        <button
+          type="submit "
+          className="font-bold pl-1 hover:text-brown pt-2 md:pt-0 md:pl-4 text-sm"
+        >
           Search
         </button>
       </Form>

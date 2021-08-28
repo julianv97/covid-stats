@@ -22,8 +22,8 @@ module.exports = {
               bounce400: 'bounce 1s infinite 400ms',
           },
           spacing: {
-            100: "27rem",
-            18: "4.5rem",
+            100: "32rem",
+            98: "28rem",
           },
       },
   },
