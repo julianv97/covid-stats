@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import CountriesContext from "../context/CountriesContext";
 
 import GlobalStats from "./GlobalStats";
-import Form from "./Form";
+import FormCountry from "./Form";
 import Country from "./Country";
 
 const Container = () => {
@@ -12,7 +12,7 @@ const Container = () => {
       {!isLoading ? (
         <React.Fragment>
           <GlobalStats />
-          <Form />
+          <FormCountry />
           <Country />
         </React.Fragment>
       ) : (

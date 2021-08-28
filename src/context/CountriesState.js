@@ -8,7 +8,9 @@ import countriesReducer from "./CountriesReducer";
 const CountriesState = (props) => {
   const initialState = {
     country: "",
-    date: "2021-08-27",
+    date: "",
+    countryStats: "1",
+    isLoadingCountry: false,
     today: formatDate(new Date()),
     todayStats: "",
     isLoading: true,
@@ -16,39 +18,45 @@ const CountriesState = (props) => {
 
   const [state, dispatch] = useReducer(countriesReducer, initialState);
 
-  let url = `https://api.covid19tracking.narrativa.com/api/${state.date}/country/${state.country}`;
+  let urlCountry = `https://api.covid19tracking.narrativa.com/api/${state.date}/country/${state.country}`;
 
   let urlGlobal = `https://api.covid19tracking.narrativa.com/api/${state.today}`;
 
-  const getData = useCallback((url, type) => {
-    axios
-      .get(url)
-      .then((res) => {
-        dispatch({ type: type, payload: res.data });
-      })
-      .catch((error) => console.log(error));
+  const getData = useCallback(async (url, type) => {
+    try {
+      const res = await axios.get(url);
+      const data = res.data;
+      dispatch({ type: type, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   useEffect(() => {
     getData(urlGlobal, "SET_GLOBAL_STATS");
+
     if (state.country) {
-      getData(url);
+      getData(urlCountry, "SET_COUNTRY_STATS");
     }
-  }, [getData, urlGlobal, url, state.country]);
+  }, [getData, urlGlobal, urlCountry, state.country]);
 
   const handleDispatch = (type, payload) => {
     dispatch({ type: type, payload: payload });
   };
 
-  if (!state.isLoading) {
-    console.log(state.todayStats);
+  if (!state.isLoadingCountry) {
+    console.log(state.countryStats);
   }
 
   return (
     <CountriesContext.Provider
       value={{
         isLoading: state.isLoading,
+        isLoadingCountry: state.isLoadingCountry,
         todayStatsGlobal: state.todayStats.total,
+        country: state.country,
+        countryStats: state.countryStats,
+        error: state.error,
         handleDispatch,
       }}
     >

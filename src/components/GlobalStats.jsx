@@ -17,9 +17,3 @@ const GlobalStats = () => {
 };
 
 export default GlobalStats;
-
-
-/*  today_confirmed: 
-today_deaths: 
-today_new_confirmed: 
-today_new_deaths:  */
